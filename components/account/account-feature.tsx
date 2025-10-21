@@ -1,18 +1,18 @@
-import { useWalletUi } from '@/components/solana/use-wallet-ui'
-import { AppText } from '@/components/app-text'
-import { ellipsify } from '@/utils/ellipsify'
-import { AppView } from '@/components/app-view'
-import { AppPage } from '@/components/app-page'
-import { AccountUiButtons } from './account-ui-buttons'
 import { AccountUiBalance } from '@/components/account/account-ui-balance'
 import { AccountUiTokenAccounts } from '@/components/account/account-ui-token-accounts'
-import { WalletUiConnectButton } from '@/components/solana/wallet-ui-dropdown'
-import { RefreshControl, ScrollView } from 'react-native'
-import { useCallback, useState } from 'react'
 import { useGetBalanceInvalidate } from '@/components/account/use-get-balance'
-import { PublicKey } from '@solana/web3.js'
 import { useGetTokenAccountsInvalidate } from '@/components/account/use-get-token-accounts'
+import { AppPage } from '@/components/app-page'
+import { AppText } from '@/components/app-text'
+import { AppView } from '@/components/app-view'
+import { useWalletUi } from '@/components/solana/use-wallet-ui'
+import { WalletUiConnectButton } from '@/components/solana/wallet-ui-dropdown'
+import { ellipsify } from '@/utils/ellipsify'
+import { PublicKey } from '@solana/web3.js'
+import { useCallback, useState } from 'react'
+import { RefreshControl, ScrollView } from 'react-native'
 import { useAppTheme } from '../app-theme'
+import { AccountUiButtons } from './account-ui-buttons'
 
 export function AccountFeature() {
   const { account } = useWalletUi()
@@ -35,7 +35,7 @@ export function AccountFeature() {
         >
           <AppView style={{ alignItems: 'center', gap: 4 }}>
             <AccountUiBalance address={account.publicKey} />
-            <AppText style={{ opacity: 0.7 }}>{ellipsify(account.publicKey.toString(), 8)}</AppText>
+            <AppText style={{ opacity: 0.7 }}>hoes be mad fr{ellipsify(account.publicKey.toString(), 8)}</AppText>
           </AppView>
           <AppView style={{ marginTop: spacing.md, alignItems: 'center' }}>
             <AccountUiButtons />

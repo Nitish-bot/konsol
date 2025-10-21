@@ -1,15 +1,17 @@
-import { router } from 'expo-router'
-import { useAuth } from '@/components/auth/auth-provider'
 import { AppText } from '@/components/app-text'
 import { AppView } from '@/components/app-view'
 import { AppConfig } from '@/constants/app-config'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { ActivityIndicator, View } from 'react-native'
-import { Image } from 'expo-image'
+import { usePrivy } from '@privy-io/expo'
+import { useLogin } from '@privy-io/expo/ui'
 import { Button } from '@react-navigation/elements'
+import { Image } from 'expo-image'
+import { router } from 'expo-router'
+import { ActivityIndicator, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function SignIn() {
-  const { signIn, isLoading } = useAuth()
+  const { login } = useLogin()
+  const { isReady } = usePrivy()
   return (
     <AppView
       style={{
@@ -18,7 +20,7 @@ export default function SignIn() {
         alignItems: 'stretch',
       }}
     >
-      {isLoading ? (
+      {isReady ? (
         <ActivityIndicator />
       ) : (
         <SafeAreaView
@@ -38,7 +40,10 @@ export default function SignIn() {
               variant="filled"
               style={{ marginHorizontal: 16 }}
               onPress={async () => {
-                await signIn()
+                await login({ loginMethods: ['email', 'google', 'twitter'] })
+                  .then((session) => {
+                    console.log('Logged in user:', session.user)
+                  })
                 // Navigate after signing in. You may want to tweak this to ensure sign-in is
                 // successful before navigating.
                 router.replace('/')

@@ -1,5 +1,5 @@
-import { getRandomValues as expoCryptoGetRandomValues } from 'expo-crypto'
 import { Buffer } from 'buffer'
+import { getRandomValues as expoCryptoGetRandomValues } from 'expo-crypto'
 
 global.Buffer = Buffer
 
@@ -8,14 +8,12 @@ class Crypto {
   getRandomValues = expoCryptoGetRandomValues
 }
 
-const webCrypto = typeof crypto !== 'undefined' ? crypto : new Crypto()
+const webCrypto = typeof global.crypto !== 'undefined' ? global.crypto : new Crypto()
 
-;(() => {
-  if (typeof crypto === 'undefined') {
-    Object.defineProperty(window, 'crypto', {
-      configurable: true,
-      enumerable: true,
-      get: () => webCrypto,
-    })
-  }
-})()
+if (typeof global.crypto === 'undefined') {
+  Object.defineProperty(global, 'crypto', {
+    configurable: true,
+    enumerable: true,
+    get: () => webCrypto,
+  })
+}

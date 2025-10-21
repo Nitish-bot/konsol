@@ -1,15 +1,17 @@
+import { AppProviders } from '@/components/app-providers'
+import { AppSplashController } from '@/components/app-splash-controller'
+import { useTrackLocations } from '@/hooks/use-track-locations'
+import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold } from '@expo-google-fonts/inter'
+import { usePrivy } from '@privy-io/expo'
+import { PrivyElements } from '@privy-io/expo/ui'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
-import { StatusBar } from 'expo-status-bar'
-import 'react-native-reanimated'
-import { AppProviders } from '@/components/app-providers'
-import { useCallback } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
+import { StatusBar } from 'expo-status-bar'
+import { useCallback } from 'react'
 import { View } from 'react-native'
-import { useTrackLocations } from '@/hooks/use-track-locations'
-import { AppSplashController } from '@/components/app-splash-controller'
-import { useAuth } from '@/components/auth/auth-provider'
-
+import { ActivityIndicator } from 'react-native-paper'
+import 'react-native-reanimated'
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
@@ -20,6 +22,9 @@ export default function RootLayout() {
   })
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
   })
 
   const onLayoutRootView = useCallback(async () => {
@@ -44,15 +49,22 @@ export default function RootLayout() {
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <AppProviders>
         <AppSplashController />
-        <RootNavigator />
         <StatusBar style="auto" />
+        <RootNavigator />
+        <PrivyElements />
       </AppProviders>
     </View>
   )
 }
 
 function RootNavigator() {
-  const { isAuthenticated } = useAuth()
+  const { isReady, user } = usePrivy()
+  const isAuthenticated = user != null
+
+  if (!isReady) {
+    return <ActivityIndicator />
+  }
+
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Protected guard={isAuthenticated}>

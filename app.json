@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "konsol",
+    "name": "Konsol",
     "slug": "konsol",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "templateexpobasic",
+    "scheme": "nbot-konsol",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -17,7 +17,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.beeman.web3jsexpopaper"
+      "package": "com.nbot.konsol.app"
     },
     "web": {
       "bundler": "metro",
@@ -40,7 +40,8 @@
         }
       ],
       "expo-web-browser",
-      "expo-font"
+      "expo-font",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

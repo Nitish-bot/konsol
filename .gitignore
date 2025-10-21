@@ -32,6 +32,7 @@ yarn-error.*
 
 # local env files
 .env*.local
+.env
 
 # typescript
 *.tsbuildinfo
@@ -43,3 +44,6 @@ tmp/
 # https://docs.expo.dev/workflow/continuous-native-generation/
 /android
 /ios
+
+# Wallet keys
+wallet_phrase.md

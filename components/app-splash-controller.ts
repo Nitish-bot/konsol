@@ -1,10 +1,10 @@
+import { usePrivy } from '@privy-io/expo'
 import { SplashScreen } from 'expo-router'
-import { useAuth } from '@/components/auth/auth-provider'
 
 export function AppSplashController() {
-  const { isLoading } = useAuth()
+  const { isReady } = usePrivy()
 
-  if (!isLoading) {
+  if (!isReady) {
     SplashScreen.hideAsync()
   }
 

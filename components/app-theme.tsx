@@ -3,10 +3,10 @@ import {
   DefaultTheme as reactNavigationLight,
   ThemeProvider,
 } from '@react-navigation/native'
-import { PropsWithChildren } from 'react'
-import { adaptNavigationTheme, MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper'
-import { useColorScheme } from '@/hooks/use-color-scheme'
 import merge from 'deepmerge'
+import { PropsWithChildren } from 'react'
+import { useColorScheme } from 'react-native'
+import { adaptNavigationTheme, MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper'
 
 const { LightTheme, DarkTheme } = adaptNavigationTheme({ reactNavigationLight, reactNavigationDark })
 
