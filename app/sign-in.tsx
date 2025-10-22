@@ -12,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 export default function SignIn() {
   const { login } = useLogin()
   const { isReady } = usePrivy()
+  console.log('SignIn screen - Privy isReady:', isReady)
   return (
     <AppView
       style={{
@@ -20,7 +21,7 @@ export default function SignIn() {
         alignItems: 'stretch',
       }}
     >
-      {isReady ? (
+      {!isReady ? (
         <ActivityIndicator />
       ) : (
         <SafeAreaView

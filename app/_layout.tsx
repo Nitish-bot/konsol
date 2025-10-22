@@ -58,8 +58,9 @@ export default function RootLayout() {
 }
 
 function RootNavigator() {
-  const { isReady, user } = usePrivy()
+  const { isReady, user, error } = usePrivy()
   const isAuthenticated = user != null
+  console.log('Privy user:', { user, error, isReady, isAuthenticated })
 
   if (!isReady) {
     return <ActivityIndicator />

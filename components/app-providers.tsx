@@ -8,13 +8,8 @@ import { ClusterProvider } from './cluster/cluster-provider'
 const queryClient = new QueryClient()
 
 export function AppProviders({ children }: PropsWithChildren) {
-  let appId = process.env.EXPO_PUBLIC_PRIVY_APP_ID
-  let clientId = process.env.EXPO_PUBLIC_PRIVY_CLIENT_ID
-  if (!appId || !clientId) {
-    throw new Error('Missing Privy App ID or Client ID in environment variables')
-  } else {
-    console.log('Privy App ID and Client ID found', { appId, clientId })
-  }
+  let appId = "cmgxt5omw0530l40brsxt2tq1"
+  let clientId = "client-WY6ReBEPXKyU4taK7W9yrXh5HUetRv5jw39o2tteGdCti"
   
   return (
     <AppTheme>
