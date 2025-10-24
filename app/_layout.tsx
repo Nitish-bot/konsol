@@ -1,17 +1,22 @@
 import { AppProviders } from '@/components/app-providers'
 import { AppSplashController } from '@/components/app-splash-controller'
+import { Icon } from '@/components/ui/icon'
 import { useTrackLocations } from '@/hooks/use-track-locations'
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold } from '@expo-google-fonts/inter'
 import { usePrivy } from '@privy-io/expo'
 import { PrivyElements } from '@privy-io/expo/ui'
+import { PortalHost } from '@rn-primitives/portal'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
+import { Loader2 } from 'lucide-react-native'
 import { useCallback } from 'react'
 import { View } from 'react-native'
-import { ActivityIndicator } from 'react-native-paper'
-import 'react-native-reanimated'
+
+import { Button } from '@/components/ui/button'
+import '@/global.css'
+
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
@@ -52,6 +57,7 @@ export default function RootLayout() {
         <StatusBar style="auto" />
         <RootNavigator />
         <PrivyElements />
+        <PortalHost />
       </AppProviders>
     </View>
   )
@@ -63,7 +69,13 @@ function RootNavigator() {
   console.log('Privy user:', { user, error, isReady, isAuthenticated })
 
   if (!isReady) {
-    return <ActivityIndicator />
+    return (
+      <Button disabled>
+        <View className="pointer-events-none animate-spin">
+          <Icon as={Loader2} className="" />
+        </View>
+      </Button>
+    )
   }
 
   return (

@@ -1,22 +1,14 @@
 import { clusterApiUrl } from '@solana/web3.js'
-import { Cluster } from '@/components/cluster/cluster'
-import { ClusterNetwork } from '@/components/cluster/cluster-network'
 
 export class AppConfig {
   static name = 'konsol'
-  static uri = 'https://example.com'
-  static clusters: Cluster[] = [
+  static uri = 'https://nbot-konsol.com'
+  static clusters = [
     {
       id: 'solana:devnet',
       name: 'Devnet',
       endpoint: clusterApiUrl('devnet'),
-      network: ClusterNetwork.Devnet,
-    },
-    {
-      id: 'solana:testnet',
-      name: 'Testnet',
-      endpoint: clusterApiUrl('testnet'),
-      network: ClusterNetwork.Testnet,
+      network: 'api.devnet.solana',
     },
   ]
 }

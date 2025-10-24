@@ -4,7 +4,7 @@ import { SplashScreen } from 'expo-router'
 export function AppSplashController() {
   const { isReady } = usePrivy()
 
-  if (!isReady) {
+  if (isReady) {
     SplashScreen.hideAsync()
   }
 

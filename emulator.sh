@@ -1,0 +1,1 @@
+~/Android/Sdk/emulator/emulator -avd Medium_Phone_API_36.0 -gpu host

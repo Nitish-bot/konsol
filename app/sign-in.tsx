@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function SignIn() {
   const { login } = useLogin()
-  const { isReady } = usePrivy()
+  const { isReady, user } = usePrivy()
   console.log('SignIn screen - Privy isReady:', isReady)
   return (
     <AppView
@@ -41,13 +41,18 @@ export default function SignIn() {
               variant="filled"
               style={{ marginHorizontal: 16 }}
               onPress={async () => {
-                await login({ loginMethods: ['email', 'google', 'twitter'] })
+                await login({ loginMethods: ['email', 'google', 'twitter', 'github'] })
                   .then((session) => {
                     console.log('Logged in user:', session.user)
                   })
+                  .catch((error) => {
+                    console.error('Login error:', error)
+                  })
                 // Navigate after signing in. You may want to tweak this to ensure sign-in is
                 // successful before navigating.
-                router.replace('/')
+                if (user != null) {
+                  router.replace('/')
+                }
               }}
             >
               Connect

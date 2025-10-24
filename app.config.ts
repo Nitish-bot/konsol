@@ -1,4 +1,4 @@
-import { ConfigContext, ExpoConfig } from 'expo/config';
+import { ConfigContext, ExpoConfig } from 'expo/config'
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
@@ -18,35 +18,38 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     edgeToEdgeEnabled: true,
     package: 'com.nbot.konsol.app',
   },
+  ios: {
+    bundleIdentifier: 'com.nbot.konsol.app',
+  },
   web: {
     favicon: './assets/images/favicon.png',
     output: 'static',
     bundler: 'metro',
   },
   plugins: [
-    "expo-router",
+    'expo-router',
     [
-      "expo-splash-screen",
+      'expo-splash-screen',
       {
-        backgroundColor: "#FFFFFF",
+        backgroundColor: '#FFFFFF',
         dark: {
-          backgroundColor: "#000000",
-          image: "./assets/images/splash-icon.png"
+          backgroundColor: '#000000',
+          image: './assets/images/splash-icon.png',
         },
-        image: "./assets/images/splash-icon.png",
+        image: './assets/images/splash-icon.png',
         imageWidth: 200,
-        resizeMode: "contain"
-      }
+        resizeMode: 'contain',
+      },
     ],
-    "expo-web-browser",
-    "expo-font",
-    "expo-secure-store"
+    'expo-web-browser',
+    'expo-font',
+    'expo-secure-store',
   ],
   experiments: {
-    typedRoutes: true
+    typedRoutes: true,
   },
   extra: {
     router: {},
-    eas: {}
-  }
-});
+    eas: {},
+  },
+})
